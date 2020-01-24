@@ -48,7 +48,6 @@
 
 use alloc::boxed::Box;
 use core::any::Any;
-use core::ptr;
 
 use crate::dwarf::eh::{self, EHAction, EHContext};
 use libc::{c_int, uintptr_t};
@@ -81,10 +80,6 @@ pub unsafe fn panic(data: Box<dyn Any + Send>) -> u32 {
             super::__rust_drop_panic();
         }
     }
-}
-
-pub fn payload() -> *mut u8 {
-    ptr::null_mut()
 }
 
 pub unsafe fn cleanup(ptr: *mut u8) -> Box<dyn Any + Send> {
